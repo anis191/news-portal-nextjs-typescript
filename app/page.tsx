@@ -1,6 +1,7 @@
 // import Image from "next/image";
 import NewsCard from "@/components/news/NewsCard";
 import Banner from "@/components/shared/Banner";
+import NewsLetter from "@/components/shared/NewsLetter";
 import { NewsItem } from "@/types/news";
 
 const Home = async() => {
@@ -23,6 +24,7 @@ const Home = async() => {
             }
           </div>
         </div>
+        <NewsLetter />
     </div>
   );
 }
