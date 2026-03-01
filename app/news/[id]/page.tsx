@@ -24,7 +24,7 @@ const NewsDetailsPage = async ({ params }: Props) => {
   try {
     const res = await fetch(`https://news-portal-fastapi-server.vercel.app/news/${id}`, {
       next: { revalidate: 60 },
-      cache: "no-store",
+      // cache: "no-store",
     });
 
     if (!res.ok) {
