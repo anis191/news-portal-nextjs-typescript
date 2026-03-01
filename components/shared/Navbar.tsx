@@ -56,7 +56,7 @@ const Navbar = () => {
             <div className="flex items-center gap-1">
               <Link
                 href="/services"
-                className={`${pathname === '/services' ? "text-red-500 font-bold" : ""} hover:text-red-500`}
+                className={`${pathname === '#' ? "text-red-500 font-bold" : ""} hover:text-red-500`}
               >
                 Services
               </Link>
