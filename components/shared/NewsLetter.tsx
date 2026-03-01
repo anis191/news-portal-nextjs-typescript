@@ -4,12 +4,12 @@ import { Input } from '../ui/input'
 
 const NewsLetter = () => {
   return (
-    <section className="relative bg-slate-900 text-white py-10 rounded-sm overflow-hidden">
+    <section className="dark:bg-slate-800 relative bg-slate-900 text-white py-10 rounded-sm overflow-hidden">
       {/* Decorative accents */}
       <div className="absolute top-0 left-0 w-40 h-40 bg-red-500 opacity-10 rounded-full -translate-x-1/2 -translate-y-1/2 blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 right-0 w-56 h-56 bg-red-500 opacity-10 rounded-full translate-x-1/3 translate-y-1/3 blur-3xl pointer-events-none" />
       {/* Top red bar accent */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-1 bg-red-500 rounded-full" />
+      {/* <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-1 bg-red-500 rounded-full" /> */}
 
       <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         {/* Badge */}

@@ -4,6 +4,10 @@
 
 @custom-variant dark (&:is(.dark *));
 
+.dark{
+  @apply bg-gray-900 text-white
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
