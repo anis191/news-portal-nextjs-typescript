@@ -15,3 +15,11 @@ export interface NewsItem{
 export interface NewsCardProps{
     item: NewsItem
 }
+
+export interface SearchProps{
+    onSearch: (SearchTerm: string) => void;
+}
+
+export interface CategoryProps{
+    onCategory: (CategoryTerm: string) =>void;
+}
