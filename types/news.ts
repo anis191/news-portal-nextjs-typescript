@@ -23,3 +23,7 @@ export interface SearchProps{
 export interface CategoryProps{
     onCategory: (CategoryTerm: string) =>void;
 }
+
+export interface NewsDetailsProps{
+  news: NewsItem
+}
