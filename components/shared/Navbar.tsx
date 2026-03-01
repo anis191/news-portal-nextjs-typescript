@@ -55,7 +55,7 @@ const Navbar = () => {
           <div className="relative" ref={dropdownRef}>
             <div className="flex items-center gap-1">
               <Link
-                href="/services"
+                href="#"
                 className={`${pathname === '#' ? "text-red-500 font-bold" : ""} hover:text-red-500`}
               >
                 Services
