@@ -1,36 +1,85 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Daily Spot
 
-## Getting Started
+A modern, responsive news portal built with **Next.js 15**, featuring real-time news fetching, dark mode, category filtering, and a clean editorial design.
 
-First, run the development server:
+**Live Demo:** [https://daily-spot.vercel.app](https://daily-spot.vercel.app)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## Features
+
+- Live news feed fetched from a FastAPI backend with ISR (revalidates every 60s)
+- Full dark / light theme toggle powered by React Context
+- Search by keyword and filter by category
+- Mobile-first design with a custom slide-in drawer menu
+- Skeleton loaders for a smooth loading experience
+- News detail pages use `generateStaticParams` + ISR for fast, static loads
+- Custom components with clean, consistent styling across all pages
+
+---
+
+## Tech Stack
+
+| Technology | Purpose |
+|---|---|
+| [Next.js 15](https://nextjs.org/) | React framework (App Router) |
+| [TypeScript](https://www.typescriptlang.org/) | Type safety |
+| [Tailwind CSS](https://tailwindcss.com/) | Utility-first styling |
+| [shadcn/ui](https://ui.shadcn.com/) | UI component library |
+| [React Icons](https://react-icons.github.io/react-icons/) | Icon library |
+| [FastAPI Backend](https://news-portal-fastapi-server.vercel.app) | News data API |
+| [Vercel](https://vercel.com/) | Deployment |
+
+---
+
+## Project Structure
+
+```
+daily-spot/
+├── app/
+│   ├── about/
+│   │   └── page.tsx
+│   ├── contact/
+│   │   └── page.tsx
+│   ├── news/
+│   │   ├── [id]/
+│   │   │   └── page.tsx        # ISR news detail page
+│   │   └── page.tsx
+│   ├── layout.tsx
+│   └── page.tsx
+├── components/
+│   ├── layout/
+│   │   ├── Navbar.tsx
+│   │   ├── MobileMenu.tsx
+│   │   └── Footer.tsx
+│   └── news/
+│       ├── Banner.tsx
+│       ├── NewsList.tsx
+│       ├── NewsCard.tsx
+│       ├── SearchBar.tsx
+│       └── CategoryFilter.tsx
+├── context/
+│   └── themeContext.tsx
+├── lib/
+│   └── fetchNews.ts
+├── public/
+│   └── assets/
+│       └── banner-img.jpg
+└── types/
+    └── news.ts
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## License
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This project is open source and available under the [MIT License](LICENSE).
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 💻 Author
+**Anisul Alam**  
+Full-Stack Developer | Django | React | PostgreSQL
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+[![LinkedIn](https://img.shields.io/badge/-LinkedIn-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/anisulalam/)
+[![Portfolio](https://img.shields.io/badge/-Portfolio-000?style=flat&logo=vercel&logoColor=white)](https://anisulalam.vercel.app/)
