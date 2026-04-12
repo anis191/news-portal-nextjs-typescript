@@ -1,6 +1,6 @@
 "use client"
 import Link from "next/link"
-import { useContext, useEffect, useState } from "react"
+import { useContext } from "react"
 import { ThemeContext } from "@/context/themeContext"
 
 interface ThemeContextType {
@@ -22,44 +22,13 @@ interface NewsItem {
   is_featured: boolean;
 }
 
-const Banner = () => {
+interface BannerProps {
+  featuredNews: NewsItem | null;
+}
+
+const Banner = ({ featuredNews }: BannerProps) => {
   const { isDarkMode } = useContext(ThemeContext) as ThemeContextType;
-  const [featuredNews, setFeaturedNews] = useState<NewsItem | null>(null);
-  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchFeaturedNews = async () => {
-      try {
-        const res = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/news/featured/current`
-        );
-
-        if (!res.ok) {
-          const errorText = await res.text();
-          console.error(`API error ${res.status}:`, errorText);
-          return;
-        }
-
-        // Safely handle null response when no featured news is set
-        const text = await res.text();
-        if (!text || text === "null") {
-          setFeaturedNews(null);
-          return;
-        }
-
-        const data = JSON.parse(text);
-        setFeaturedNews(data);
-      } catch (error) {
-        console.error("Error fetching featured news:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchFeaturedNews();
-  }, []);
-
-  // --- Format date: fallback to today if null ---
   const formatDate = (dateStr: string | null) => {
     const date = dateStr ? new Date(dateStr) : new Date();
     return date.toLocaleDateString("en-US", {
@@ -68,13 +37,11 @@ const Banner = () => {
     });
   };
 
-  // --- Get first category for pill ---
   const getCategory = (categories: string | null) => {
     if (!categories) return "General";
     return categories.split(",")[0].trim();
   };
 
-  // --- Estimate read time from snippet ---
   const getReadTime = (snippet: string | null) => {
     if (!snippet) return "3 min read";
     const words = snippet.trim().split(/\s+/).length;
@@ -82,7 +49,6 @@ const Banner = () => {
     return `${minutes} min read`;
   };
 
-  // --- Fix image URL: append banner dimensions for Unsplash URLs ---
   const getBannerImage = (url: string | null) => {
     if (!url) return null;
     if (url.includes("unsplash.com") && !url.includes("fit=crop")) {
@@ -92,35 +58,7 @@ const Banner = () => {
     return url;
   };
 
-  // --- Skeleton loader ---
-  if (loading) {
-    return (
-      <div className={`rounded-md overflow-hidden transition-colors duration-200 animate-pulse ${
-        isDarkMode ? "bg-gray-800" : "bg-slate-100"
-      }`}>
-        <div className="px-4 py-8 lg:px-8 grid grid-cols-1 md:grid-cols-2 items-center gap-8">
-          <div className={`rounded-sm w-full h-64 ${
-            isDarkMode ? "bg-gray-700" : "bg-slate-300"
-          }`} />
-          <div className="space-y-4">
-            <div className={`h-3 w-48 rounded ${isDarkMode ? "bg-gray-700" : "bg-slate-300"}`} />
-            <div className={`h-6 w-full rounded ${isDarkMode ? "bg-gray-700" : "bg-slate-300"}`} />
-            <div className={`h-6 w-3/4 rounded ${isDarkMode ? "bg-gray-700" : "bg-slate-300"}`} />
-            <div className={`h-1 w-10 rounded ${isDarkMode ? "bg-gray-700" : "bg-slate-300"}`} />
-            <div className={`h-3 w-full rounded ${isDarkMode ? "bg-gray-700" : "bg-slate-300"}`} />
-            <div className={`h-3 w-5/6 rounded ${isDarkMode ? "bg-gray-700" : "bg-slate-300"}`} />
-            <div className={`h-3 w-4/6 rounded ${isDarkMode ? "bg-gray-700" : "bg-slate-300"}`} />
-            <div className={`h-9 w-32 rounded-md ${isDarkMode ? "bg-gray-700" : "bg-slate-300"}`} />
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  // --- No featured news fallback ---
-  if (!featuredNews) {
-    return null;
-  }
+  if (!featuredNews) return null;
 
   return (
     <div className={`rounded-md overflow-hidden transition-colors duration-200 ${

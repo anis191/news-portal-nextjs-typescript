@@ -14,7 +14,7 @@ const CategoryFilter = ({ onCategory }: CategoryProps) => {
   const [selected, setSelected] = useState("Select Category");
   const [isOpen, setIsOpen] = useState(false);
 
-  const categories = ["all", "Science", "Technology", "Environment", "General", "Economy", "Finance"];
+  const categories = ["all", "World", "Science", "Technology", "Environment", "General", "Economy", "Finance", "Politics", "Sports", "Health"];
 
   const handleSelect = (item: string) => {
     setSelected(item === "all" ? "All" : item);
